@@ -1,0 +1,29 @@
+{
+  "name": "express-antenna-cocoalumberjack",
+  "description": "Antenna Express.js endpoint for receiving CocoaLumberjack logs.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bamse16/express-antenna-cocoalumberjack"
+  },
+  "keywords": [
+    "antenna",
+    "express",
+    "cocoalumberjack"
+  ],
+  "author": "Marius Ursache <marius@marius.me.uk>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.6.5",
+    "debug": "^1.0.4",
+    "express": "^4.8.5",
+    "log": "^1.4.0",
+    "underscore": "^1.6.0"
+  },
+  "files": [
+    "LICENSE.txt",
+    "README.md",
+    "app.js"
+  ]
+}
