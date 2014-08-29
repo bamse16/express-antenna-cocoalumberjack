@@ -1,7 +1,7 @@
 {
   "name": "express-antenna-cocoalumberjack",
   "description": "Antenna Express.js endpoint for receiving CocoaLumberjack logs.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "app.js",
   "repository": {
     "type": "git",
