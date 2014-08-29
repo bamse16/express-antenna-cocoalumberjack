@@ -40,8 +40,16 @@ router.get('/ping', function(req, res){
 });
 
 router.post('/log', function(req, res){
-  var object = _.pick(req.body, ['locale', 'notification', 'uuid', 'json', 'message', 'modified_unix_date']);
+  var default_keys = ['locale', 'notification', 'uuid', 'json', 'message', 'timestamp', 'method', 'log-level', 'file'];
+  var custom_keys = ['username', 'user-id', 'device-name', 'department-id', 'app-version'];
+  var filter_keys = _.union(default_keys, custom_keys);
+  var object = _.pick(req.body, filter_keys);
   var message = JSON.stringify(object);
+
+  var ignored_keys = _.omit(req.body, filter_keys);
+  if(_.size(ignored_keys) > 0){
+    console.log('ignored keys', ignored_keys);
+  }
 
   if(_.isNull(logger) || _.isUndefined(logger)){
     console.log(new Date().toISOString(), message);
