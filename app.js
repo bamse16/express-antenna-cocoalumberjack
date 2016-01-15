@@ -1,4 +1,5 @@
-'use strict';
+/* jslint node: true */
+"use strict";
 
 var _ = require('underscore');
 var express = require('express');
@@ -11,6 +12,7 @@ var debug = require('debug')('express-antenna-cocoalumberjack');
 
 var port = process.env.NODE_EXPRESS_ANTENNA_PORT || 3205;
 var logPath = process.env.NODE_EXPRESS_ANTENNA_LOG_PATH || null;
+var logUrl = process.env.NODE_EXPRESS_ANTENNA_LOG_URL || '/log';
 
 var logger = null;
 
@@ -39,7 +41,9 @@ router.get('/ping', function(req, res){
 	res.json({pong: new Date().toISOString()});
 });
 
-router.post('/log', function(req, res){
+// Default endpoint is /log.
+// Use export NODE_EXPRESS_ANTENNA_LOG_URL='/api/logging/path' to change it.
+router.post(logUrl, function(req, res){
   var default_keys = ['locale', 'notification', 'uuid', 'json', 'message', 'timestamp', 'method', 'log-level', 'file'];
   var custom_keys = ['username', 'user-id', 'device-name', 'department-id', 'app-version'];
   var filter_keys = _.union(default_keys, custom_keys);
@@ -60,7 +64,6 @@ router.post('/log', function(req, res){
   res.status(200).end();
 });
 
-var server;
-server = app.listen(port, function() {
+var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
 });
